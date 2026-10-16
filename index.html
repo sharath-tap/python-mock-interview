@@ -444,6 +444,17 @@ ol.n li b{color:var(--ink);font-weight:450}
 .pickcount b{color:var(--ink);font-weight:500}
 @media(max-width:640px){.pickin{padding:0 18px}.pickcount{margin-left:0;width:100%}}
 
+.tabs{display:flex;gap:4px;background:var(--mist);border-radius:9999px;padding:3px}
+.tabs button{font:inherit;font-size:15px;font-weight:450;padding:7px 22px;border:0;
+  border-radius:9999px;background:none;color:var(--slate);cursor:pointer}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-pressed="true"]{background:var(--sienna);color:#fff}
+.vr{width:1px;height:26px;background:var(--hair)}
+
+/* one subject at a time */
+body[data-subject="sql"] .pyonly{display:none}
+body[data-subject="python"] .sqlonly{display:none}
+
 /* September view: August-only questions are not in the room */
 body[data-batch="sep"] .aq[data-who="aug"]{display:none}
 body[data-batch="sep"] .augnote{display:block}
@@ -497,8 +508,13 @@ body[data-batch="sep"] .augnote{display:block}
 
 <div class="pick">
  <div class="pickin">
-  <span class="picklab">Batch</span>
-  <div class="pickbtns" role="group" aria-label="Which batch">
+  <div class="tabs" role="group" aria-label="Subject">
+   <button type="button" data-subject="python" aria-pressed="true">Python</button>
+   <button type="button" data-subject="sql" aria-pressed="false">SQL</button>
+  </div>
+  <span class="vr pyonly"></span>
+  <span class="picklab pyonly">Batch</span>
+  <div class="pickbtns pyonly" role="group" aria-label="Which batch">
    <button type="button" data-batch="sep" aria-pressed="true">September B2</button>
    <button type="button" data-batch="aug" aria-pressed="false">August B3</button>
   </div>
@@ -515,11 +531,12 @@ body[data-batch="sep"] .augnote{display:block}
     <li><span>Ask for the <b>resume</b>.</span></li>
    </ul>
   </div>
-  <div class="augnote"><b>September B2 selected.</b> 20 questions are hidden &mdash; functions and
+  <div class="augnote pyonly"><b>September B2 selected.</b> 20 questions are hidden &mdash; functions and
   <code>def</code>, <code>while</code> / <code>break</code> / <code>continue</code>,
   <code>lambda</code>, <code>map</code> / <code>filter</code> / <code>reduce</code>, recursion,
   f-strings and regular expressions. They have never been taught any of it. Everything still on this
   page is safe to ask anybody in the room.</div>
+<div class="pyonly">
 <div class="round" id="r1" data-all="38" data-aug="6">
  <div class="rhead"><span class="mins">12 minutes</span><h3>Round 1 &mdash; rapid fire</h3><span class="cnt"></span></div>
  <p class="rlede">One line out, one line back. Do not let anybody explain. If they start a paragraph, stop them and move on &mdash; the point of this round is speed and finding out what is automatic.</p>
@@ -1073,10 +1090,357 @@ while True:
     <div class="ans">To change the thing the condition is testing. If <code>i</code> never increases, <code>while i &lt; 5</code> is true forever. <code>Ctrl</code>+<code>C</code> stops it.</div></div></div>
  </div>
 </div>
+</div>
+<div class="sqlonly">
+<div class="round" id="s1" data-all="28" data-aug="0">
+ <div class="rhead"><span class="mins">10 minutes</span><h3>Round 1 &mdash; rapid fire</h3><span class="cnt"></span></div>
+ <p class="rlede">One line out, one line back. No explanations in this round.</p>
+ <div class="askq">
+   <div class="aq" data-who="both"><div>
+    <q>Which command gets data out of a table?</q>
+    <div class="ans"><code>SELECT</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which clause filters rows?</q>
+    <div class="ans"><code>WHERE</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which clause sorts the result?</q>
+    <div class="ans"><code>ORDER BY</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>How do you sort largest first?</q>
+    <div class="ans"><code>ORDER BY salary DESC</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which keyword removes repeated values from the result?</q>
+    <div class="ans"><code>DISTINCT</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which clause limits how many rows come back?</q>
+    <div class="ans"><code>LIMIT</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which operator checks a range, both ends included?</q>
+    <div class="ans"><code>BETWEEN</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which operator checks against a list of values?</q>
+    <div class="ans"><code>IN</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which operator matches part of a word?</q>
+    <div class="ans"><code>LIKE</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>In <code>LIKE</code>, what does <code>%</code> mean?</q>
+    <div class="ans">Any number of characters, including none.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>In <code>LIKE</code>, what does <code>_</code> mean?</q>
+    <div class="ans">Exactly one character.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>How do you test for a missing value?</q>
+    <div class="ans"><code>IS NULL</code>, never <code>= NULL</code>.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which clause groups rows together?</q>
+    <div class="ans"><code>GROUP BY</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which clause filters after grouping?</q>
+    <div class="ans"><code>HAVING</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Name the five aggregate functions.</q>
+    <div class="ans"><code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which command changes existing rows?</q>
+    <div class="ans"><code>UPDATE</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which command removes rows?</q>
+    <div class="ans"><code>DELETE</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which command changes the structure of a table?</q>
+    <div class="ans"><code>ALTER</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which key uniquely identifies a row?</q>
+    <div class="ans">The <b>primary key</b>.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which key points at another table's primary key?</q>
+    <div class="ans">The <b>foreign key</b>.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which function joins two pieces of text together?</q>
+    <div class="ans"><code>CONCAT</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which function pulls a piece out of a string?</q>
+    <div class="ans"><code>SUBSTRING</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which function removes spaces from both ends?</q>
+    <div class="ans"><code>TRIM</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which function counts the characters in a string?</q>
+    <div class="ans"><code>LENGTH</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which function gives the number of days between two dates?</q>
+    <div class="ans"><code>DATEDIFF</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which function returns a chosen value when a column is NULL?</q>
+    <div class="ans"><code>IFNULL</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which three window functions did you learn?</q>
+    <div class="ans"><code>ROW_NUMBER</code>, <code>RANK</code>, <code>DENSE_RANK</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Which clause splits a window function into groups?</q>
+    <div class="ans"><code>PARTITION BY</code></div></div></div>
+ </div>
+</div>
+
+<div class="round" id="s2" data-all="17" data-aug="0">
+ <div class="rhead"><span class="mins">18 minutes</span><h3>Round 2 &mdash; short answers</h3><span class="cnt"></span></div>
+ <p class="rlede">Two or three sentences. Push for the <b>why</b>, and ask for an example whenever the answer sounds like a definition they memorised.</p>
+ <div class="askq">
+   <div class="aq" data-who="both"><div>
+    <q>What is the difference between <code>WHERE</code> and <code>HAVING</code>?</q>
+    <div class="ans"><code>WHERE</code> filters <b>rows, before grouping</b>. <code>HAVING</code> filters <b>groups, after grouping</b>. So you cannot put an aggregate in <code>WHERE</code> &mdash; at that point the groups do not exist yet.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is the difference between <code>DELETE</code>, <code>TRUNCATE</code> and <code>DROP</code>?</q>
+    <div class="ans"><b>DELETE</b> removes rows and you can put a <code>WHERE</code> on it. <b>TRUNCATE</b> empties the whole table but the table stays. <b>DROP</b> removes the table itself, structure and all.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is a primary key, and can it be NULL?</q>
+    <div class="ans">It is the column that <b>uniquely identifies every row</b>. It cannot be NULL and it cannot repeat. One per table.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is a foreign key for?</q>
+    <div class="ans">It points at the primary key of another table, which is what <b>links two tables together</b>. It also stops you storing a value that does not exist in the other table.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is normalization, in your own words?</q>
+    <div class="ans">Splitting data into more tables so the same fact is <b>stored in one place only</b>. If a department name is written on 500 employee rows and it changes, you have 500 edits and one of them will be missed.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What does <code>COUNT(*)</code> count that <code>COUNT(column)</code> does not?</q>
+    <div class="ans"><code>COUNT(*)</code> counts <b>every row</b>. <code>COUNT(column)</code> counts only rows where that column is <b>not NULL</b>. The gap between them is your missing data.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Why can <code>AVG(salary)</code> and <code>SUM(salary)/COUNT(*)</code> give different answers?</q>
+    <div class="ans">Because <code>AVG</code> <b>skips NULLs</b> and divides by how many salaries actually exist. <code>COUNT(*)</code> counts every row including the ones with no salary, so you divide by a bigger number.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is the difference between <code>ROW_NUMBER</code> and <code>RANK</code>?</q>
+    <div class="ans"><code>ROW_NUMBER</code> always gives <b>1, 2, 3</b> even when values tie. <code>RANK</code> gives <b>the same number to a tie</b> and then skips &mdash; 1, 2, 2, 4.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is the difference between <code>RANK</code> and <code>DENSE_RANK</code>?</q>
+    <div class="ans">Both give ties the same number. <code>RANK</code> then <b>skips</b> &mdash; 1, 2, 2, 4. <code>DENSE_RANK</code> does <b>not skip</b> &mdash; 1, 2, 2, 3.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What does <code>PARTITION BY</code> do?</q>
+    <div class="ans">It <b>restarts the window function for each group</b>. Rank by salary with <code>PARTITION BY department</code> and every department gets its own number 1.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is the difference between <code>GROUP BY</code> and <code>PARTITION BY</code>?</q>
+    <div class="ans"><code>GROUP BY</code> <b>collapses</b> rows &mdash; four departments give you four rows. <code>PARTITION BY</code> <b>keeps every row</b> and adds a number to each one.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is cardinality in an ER diagram?</q>
+    <div class="ans">How many of one thing relate to how many of another &mdash; <b>one to one</b>, <b>one to many</b>, or <b>many to many</b>. One department has many employees, so that is one to many.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is the difference between <code>CHAR</code> and <code>VARCHAR</code>?</q>
+    <div class="ans"><code>CHAR</code> is <b>fixed length</b> and pads with spaces. <code>VARCHAR</code> uses only what it needs. Use CHAR when the length never changes, like a two-letter state code.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Why is <code>= NULL</code> wrong?</q>
+    <div class="ans">Because NULL means <b>unknown</b>, and nothing is equal to unknown &mdash; not even another NULL. Use <code>IS NULL</code>.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What does <code>IFNULL</code> do and when would you use it?</q>
+    <div class="ans">It swaps a NULL for a value you choose. <code>IFNULL(salary, 0)</code> gives 0 wherever the salary is missing &mdash; useful for display, <b>dangerous for an average</b>, because now it divides by a zero instead of skipping it.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is the difference between <code>LIKE</code> and a regular expression?</q>
+    <div class="ans"><code>LIKE</code> handles simple shapes with <code>%</code> and <code>_</code>. A regular expression describes a <b>pattern</b> &mdash; any ten digits, anything ending in three letters, one of several options. Use LIKE when it is enough, because it is easier to read.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What does <code>ALTER</code> let you do?</q>
+    <div class="ans">Change the <b>structure</b> of a table that already exists &mdash; add a column, drop a column, change a data type, rename. It changes the shape, not the rows.</div></div></div>
+ </div>
+</div>
+
+<div class="round" id="s3" data-all="17" data-aug="0">
+ <div class="rhead"><span class="mins">20 minutes</span><h3>Round 3 &mdash; write the query</h3><span class="cnt"></span></div>
+ <p class="rlede">Everything in this round runs on one table. Put it on the board and leave it up.<br><br><code>employees</code> &mdash; <code>emp_id</code>, <code>name</code>, <code>department</code>, <code>salary</code>, <code>city</code>, <code>join_date</code></p>
+ <div class="askq">
+   <div class="aq" data-who="both"><div>
+    <q>Everyone in Tech.</q>
+    <div class="ans"><code>SELECT * FROM employees WHERE department = 'Tech';</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>The five highest paid people.</q>
+    <div class="ans"><code>SELECT * FROM employees ORDER BY salary DESC LIMIT 5;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Every different city in the table, once each.</q>
+    <div class="ans"><code>SELECT DISTINCT city FROM employees;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Everybody earning between 40000 and 60000.</q>
+    <div class="ans"><code>SELECT * FROM employees WHERE salary BETWEEN 40000 AND 60000;</code><br><br><b>Both ends are included.</b> 40000 and 60000 come back.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Everybody in Tech, HR or Sales, without writing three ORs.</q>
+    <div class="ans"><code>SELECT * FROM employees WHERE department IN ('Tech', 'HR', 'Sales');</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Everybody whose name starts with A.</q>
+    <div class="ans"><code>SELECT * FROM employees WHERE name LIKE 'A%';</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Everybody with no salary recorded.</q>
+    <div class="ans"><code>SELECT * FROM employees WHERE salary IS NULL;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>How many people are in each department.</q>
+    <div class="ans"><code>SELECT department, COUNT(*) FROM employees GROUP BY department;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>The average salary of each department, highest first.</q>
+    <div class="ans"><code>SELECT department, AVG(salary) FROM employees<br>GROUP BY department<br>ORDER BY AVG(salary) DESC;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Only the departments that have more than ten people.</q>
+    <div class="ans"><code>SELECT department, COUNT(*) FROM employees<br>GROUP BY department<br>HAVING COUNT(*) &gt; 10;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Give everybody in Tech a ten per cent raise.</q>
+    <div class="ans"><code>UPDATE employees<br>SET salary = salary * 1.1<br>WHERE department = 'Tech';</code><br><br><b>No WHERE and you have just raised the whole company.</b></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Add a column called <code>email</code> that holds text.</q>
+    <div class="ans"><code>ALTER TABLE employees ADD email VARCHAR(100);</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Show each person's name in capitals next to their department, as one column.</q>
+    <div class="ans"><code>SELECT CONCAT(UPPER(name), ' - ', department) FROM employees;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>How many days each person has been with the company.</q>
+    <div class="ans"><code>SELECT name, DATEDIFF(CURDATE(), join_date) FROM employees;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Number everybody from highest paid to lowest, 1, 2, 3 with no ties shared.</q>
+    <div class="ans"><code>SELECT name, salary,<br>&nbsp;&nbsp;ROW_NUMBER() OVER (ORDER BY salary DESC)<br>FROM employees;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Rank people by salary <b>inside their own department</b>.</q>
+    <div class="ans"><code>SELECT name, department, salary,<br>&nbsp;&nbsp;RANK() OVER (PARTITION BY department ORDER BY salary DESC)<br>FROM employees;</code></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Show the salary, but print 0 where it is missing.</q>
+    <div class="ans"><code>SELECT name, IFNULL(salary, 0) FROM employees;</code></div></div></div>
+ </div>
+</div>
+
+<div class="round" id="s4" data-all="5" data-aug="0">
+ <div class="rhead"><span class="mins">12 minutes</span><h3>Round 4 &mdash; explain it properly</h3><span class="cnt"></span></div>
+ <p class="rlede">Long answers. Let the silence sit. <b>Ask for an example every time.</b></p>
+ <div class="askq">
+   <div class="aq" data-who="both"><div>
+    <q>Explain normalization to somebody who has never heard the word. Use a real example.</q>
+    <div class="ans">Start with one wide table where every employee row also carries the department name, the department head and the office address. The same department is written out five hundred times.<br><br>Two things go wrong. <b>Changing it</b> means five hundred edits and one will be missed, so now the data disagrees with itself. And a <b>new department with nobody in it yet</b> cannot be stored at all, because there is no employee row to put it on.<br><br>Split it: a <code>departments</code> table holding each department once, and a foreign key on <code>employees</code> pointing at it. <b>One fact, one place.</b></div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Walk me through the order a SELECT actually runs in, and why it matters.</q>
+    <div class="ans">You write <code>SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY</code>, but it runs roughly: <b>FROM</b> gets the rows, <b>WHERE</b> throws some away, <b>GROUP BY</b> collapses what is left, <b>HAVING</b> throws away whole groups, <b>SELECT</b> picks the columns, <b>ORDER BY</b> sorts, <b>LIMIT</b> cuts.<br><br><b>Why it matters:</b> it explains why an aggregate cannot go in <code>WHERE</code> &mdash; the groups do not exist yet when WHERE runs. And why <code>LIMIT 5</code> without <code>ORDER BY</code> gives you five arbitrary rows, not the top five.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>What is the difference between a primary key and a unique column? Both stop duplicates.</q>
+    <div class="ans">Both stop duplicates. The differences: a <b>primary key cannot be NULL</b>, a unique column usually can. There is <b>one primary key per table</b>, but you can have several unique columns. And the primary key is what <b>foreign keys point at</b> &mdash; it is the row's identity, not just a constraint.<br><br>Example: <code>emp_id</code> is the primary key; the company email can be unique as well, but it is not what identifies the row.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>When would you reach for a window function instead of GROUP BY?</q>
+    <div class="ans"><code>GROUP BY</code> when you want <b>one row per group</b> &mdash; four departments, four averages. A window function when you want <b>every row back, with something extra attached</b>.<br><br>The question that forces it: <em>&ldquo;show me every employee alongside their rank inside their own department&rdquo;</em>. GROUP BY cannot do that, because it has already thrown the individual rows away.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>You have to delete one employee. Talk me through how you would do it safely.</q>
+    <div class="ans">Write the <code>SELECT</code> first with exactly the <code>WHERE</code> you plan to use, and look at what comes back. If that returns the one row you mean, change <code>SELECT *</code> to <code>DELETE</code> and leave the WHERE untouched.<br><br><b>What to listen for:</b> that they filter on the <b>primary key</b> and not the name &mdash; two people can share a name. And an awareness that <code>DELETE</code> with no WHERE empties the table.</div></div></div>
+ </div>
+</div>
+
+<div class="round" id="s5" data-all="8" data-aug="0">
+ <div class="rhead"><span class="mins">8 minutes</span><h3>Round 5 &mdash; the trap questions</h3><span class="cnt"></span></div>
+ <p class="rlede">Short, and built to be got wrong. <b>When the room misses one, stop and teach it.</b></p>
+ <div class="askq">
+   <div class="aq" data-who="both"><div>
+    <q><code>SELECT * FROM employees WHERE salary = NULL;</code> returns nothing. Is the table empty?</q>
+    <div class="ans"><b>No.</b> Nothing is ever equal to NULL, so the condition is never true. It needs <code>IS NULL</code>.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>I ran an UPDATE and 200 rows changed instead of 1. What did I forget?</q>
+    <div class="ans">The <code>WHERE</code>. With no WHERE, <code>UPDATE</code> applies to <b>every row in the table</b>, and it does not warn you.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q><code>LIMIT 5</code> without <code>ORDER BY</code> &mdash; do I get the top five?</q>
+    <div class="ans"><b>No.</b> You get five rows in whatever order the database felt like. Top five needs <code>ORDER BY salary DESC LIMIT 5</code>.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Why does <code>WHERE COUNT(*) &gt; 10</code> fail?</q>
+    <div class="ans">Because <code>WHERE</code> runs <b>before</b> the rows are grouped, so there is nothing to count yet. That condition belongs in <code>HAVING</code>.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q><code>COUNT(*)</code> says 201 and <code>COUNT(salary)</code> says 199. What does that tell you?</q>
+    <div class="ans"><b>Two salaries are NULL.</b> <code>COUNT(*)</code> counts rows, <code>COUNT(column)</code> skips NULLs, and the gap is your missing data.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q>Three people tie for second place. Under <code>RANK</code>, what number does the next person get?</q>
+    <div class="ans"><b>5.</b> One first, then three on 2, and <code>RANK</code> skips 3 and 4. Under <code>DENSE_RANK</code> they would get 3.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q><code>TRUNCATE</code> and <code>DELETE</code> both emptied my table. Any difference?</q>
+    <div class="ans"><code>DELETE</code> can take a <code>WHERE</code> and removes rows one at a time. <code>TRUNCATE</code> takes no WHERE, empties the lot, and is much faster. Both leave the table standing.</div></div></div>
+
+   <div class="aq" data-who="both"><div>
+    <q><code>LIKE 'a%'</code> did not find <code>Asha</code>. Why might that be?</q>
+    <div class="ans">Case. Depending on how the column is set up, <code>'a%'</code> may not match a capital A. Match the case, or push both sides to the same case first.</div></div></div>
+ </div>
+</div>
+</div>
  </div>
 </section>
 
-<section class="fog">
+<section class="fog sqlonly">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">What the SQL questions cover</h2>
+  <p class="cap" style="margin-bottom:4px">Scoped to everything taught <b>before subqueries</b>
+  &mdash; databases and ER diagrams, schema and data types, normalization, keys and
+  <code>ALTER</code>, <code>UPDATE</code> and <code>DELETE</code>, the query clauses, regular
+  expressions, string and date functions, control flow, window functions, and aggregates with
+  <code>GROUP BY</code> and <code>HAVING</code>.</p>
+  <div class="warn" style="margin-top:18px"><b>Nothing here uses subqueries, joins, views, stored
+  procedures or triggers.</b> Those come after the point the class has reached, so they are left out
+  entirely. <b>SQL is common to both batches</b> &mdash; every question in this tab can go to
+  anybody in the room.</div>
+ </div>
+</section>
+
+<section class="fog pyonly">
  <div class="wrap">
   <h2 class="h" style="margin-bottom:8px">What each batch has covered</h2>
   <p class="cap" style="margin-bottom:4px">September B2 joined the August class on <b>8 October</b>, at
@@ -1110,11 +1474,11 @@ while True:
  <div class="wrap">
   <h2 class="h" style="margin-bottom:14px">How to run it</h2>
   <ol class="n">
-   <li><b>Leave the switch on September B2 unless you are certain.</b> The class merged five weeks ago
+   <li class="pyonly"><b>Leave the switch on September B2 unless you are certain.</b> The class merged five weeks ago
    and they sit in one room. Anything hidden in that view will make a September student look like they
    forgot something they were never shown.</li>
-   <li><b>Say at the start that this is Python only.</b> No NumPy, no Pandas, no statistics. The room
-   relaxes and you get better answers.</li>
+   <li><b>Say at the start what the round is.</b> Python, or SQL. No NumPy, no Pandas, no
+   statistics in either. The room relaxes and you get better answers.</li>
    <li><b>Do not go round the class in order.</b> Jump. The moment it becomes predictable, everybody
    switches off until their turn is close.</li>
    <li><b>Take the answer from one person and the reason from another.</b> It doubles the number of
@@ -1129,30 +1493,42 @@ while True:
 
 <script>
 (function(){
- var TOTAL=118, AUGN=20;
- var btns=[].slice.call(document.querySelectorAll(".pickbtns button"));
+ var PY=118, AUGN=20, SQL=75;
+ var subs =[].slice.call(document.querySelectorAll(".tabs button"));
+ var btns =[].slice.call(document.querySelectorAll(".pickbtns button"));
  var shown=document.getElementById("shown"), hid=document.getElementById("hidnote");
+ var subject="python", batch="sep";
 
- function apply(b){
-   document.body.setAttribute("data-batch", b);
-   btns.forEach(function(x){ x.setAttribute("aria-pressed", String(x.dataset.batch===b)); });
-   var sep = (b==="sep");
-   shown.textContent = sep ? (TOTAL-AUGN) : TOTAL;
-   hid.textContent   = sep ? ("\u00b7 " + AUGN + " hidden") : "\u00b7 everything";
-   [].forEach.call(document.querySelectorAll(".round"), function(r){
+ function paint(){
+   document.body.setAttribute("data-subject", subject);
+   document.body.setAttribute("data-batch", batch);
+   subs.forEach(function(x){ x.setAttribute("aria-pressed", String(x.dataset.subject===subject)); });
+   btns.forEach(function(x){ x.setAttribute("aria-pressed", String(x.dataset.batch===batch)); });
+
+   var sql = (subject==="sql"), sep = (batch==="sep");
+   shown.textContent = sql ? SQL : (sep ? (PY-AUGN) : PY);
+   hid.textContent   = sql ? "· common to both batches"
+                           : (sep ? ("· " + AUGN + " hidden") : "· everything");
+
+   var sel = sql ? ".sqlonly .round" : ".pyonly .round";
+   [].forEach.call(document.querySelectorAll(sel), function(r){
      var all=+r.dataset.all, a=+r.dataset.aug;
-     var n = sep ? (all-a) : all;
+     var n = (!sql && sep) ? (all-a) : all;
      r.querySelector(".cnt").textContent =
-        n + " question" + (n===1?"":"s") + (sep && a ? "  \u00b7 " + a + " hidden" : "");
+        n + " question" + (n===1?"":"s") + ((!sql && sep && a) ? "  · " + a + " hidden" : "");
      r.style.display = n ? "" : "none";
    });
-   try{ localStorage.setItem("mock-batch", b); }catch(e){}
+   try{ localStorage.setItem("mock-batch", batch);
+        localStorage.setItem("mock-subject", subject); }catch(e){}
  }
- btns.forEach(function(x){ x.onclick=function(){ apply(x.dataset.batch); }; });
+ subs.forEach(function(x){ x.onclick=function(){ subject=x.dataset.subject; paint(); window.scrollTo(0,0); }; });
+ btns.forEach(function(x){ x.onclick=function(){ batch=x.dataset.batch; paint(); }; });
 
- var start="sep";
- try{ var v=localStorage.getItem("mock-batch"); if(v==="aug"||v==="sep") start=v; }catch(e){}
- apply(start);
+ try{
+   var b=localStorage.getItem("mock-batch");   if(b==="aug"||b==="sep") batch=b;
+   var u=localStorage.getItem("mock-subject"); if(u==="sql"||u==="python") subject=u;
+ }catch(e){}
+ paint();
 })();
 </script>
 </body>
