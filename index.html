@@ -518,7 +518,7 @@ body[data-batch="sep"] .augnote{display:block}
    <button type="button" data-batch="sep" aria-pressed="true">September B2</button>
    <button type="button" data-batch="aug" aria-pressed="false">August B3</button>
   </div>
-  <span class="pickcount"><b id="shown">98</b> questions showing <span id="hidnote"></span></span>
+  <span class="pickcount"><b id="shown">90</b> questions showing <span id="hidnote"></span></span>
  </div>
 </div>
 
@@ -531,7 +531,7 @@ body[data-batch="sep"] .augnote{display:block}
     <li><span>Ask for the <b>resume</b>.</span></li>
    </ul>
   </div>
-  <div class="augnote pyonly"><b>September B2 selected.</b> 20 questions are hidden &mdash; functions and
+  <div class="augnote pyonly"><b>September B2 selected.</b> 18 questions are hidden &mdash; functions and
   <code>def</code>, <code>while</code> / <code>break</code> / <code>continue</code>,
   <code>lambda</code>, <code>map</code> / <code>filter</code> / <code>reduce</code>, recursion,
   f-strings and regular expressions. They have never been taught any of it. Everything still on this
@@ -1044,52 +1044,6 @@ while True:
     <div class="ans">Use string methods when you know <b>exactly</b> what you are looking for &mdash; a fixed word, a fixed separator. <code>split</code>, <code>replace</code> and <code>strip</code> are clearer and faster to read.<br><br>Use a regular expression when you are describing a <b>shape</b> rather than a value: any ten-digit number, anything that looks like an email, a date in any of three formats. The moment you find yourself writing five <code>if</code> statements to describe a pattern, that is the signal.</div></div></div>
  </div>
 </div>
-
-<div class="round" id="r5" data-all="10" data-aug="2">
- <div class="rhead"><span class="mins">10 minutes</span><h3>Round 5 &mdash; the trap questions</h3><span class="cnt"></span></div>
- <p class="rlede">Short, and designed to be got wrong. Use these to find out who is reciting and who is thinking. <b>If the room gets one wrong, that is the most useful thing that happens all session &mdash; teach it on the spot.</b></p>
- <div class="askq">
-   <div class="aq" data-who="both"><div>
-    <q>I did <code>y = x</code> with two lists, changed <code>y</code>, and <code>x</code> changed too. Is that a bug?</q>
-    <div class="ans"><b>No.</b> <code>y = x</code> did not copy anything &mdash; it gave the <b>same list a second name</b>. Both names point at one list. To get a real copy you need <code>x.copy()</code> or <code>list(x)</code>.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>Why is <code>bool("False")</code> True?</q>
-    <div class="ans">Because it is a <b>string with five characters in it</b>, not the word False. Any string that is not empty is True. Only <code>""</code> is False.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q><code>"10" == 10</code> is False. Explain.</q>
-    <div class="ans">One is text and one is a number. They look the same on screen and they are different types, so they are not equal. This is exactly what bites people after <code>input()</code>.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>I wrote a method but when I call it nothing happens. What are the two most likely reasons?</q>
-    <div class="ans">Either it <b>prints nothing and returns something</b>, and you did not print the result. Or you referred to it without the brackets &mdash; <code>s.passed</code> instead of <code>s.passed()</code> &mdash; which hands you the method itself rather than running it.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>I used <code>pop()</code> on an empty list. What happens?</q>
-    <div class="ans">It raises an <code>IndexError</code>. There is nothing at that position to remove. The same thing happens with <code>[1,2,3][5]</code>.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>Is a set ordered?</q>
-    <div class="ans"><b>No.</b> You cannot rely on the order and you cannot ask for <code>s[0]</code>. If you need order, convert it to a list and sort it.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>Two objects of the same class &mdash; do they share their values?</q>
-    <div class="ans"><b>No.</b> Each object holds its own. The class is the plan; every object made from it has its own copy of the values that <code>__init__</code> put there.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>Does <code>except</code> catch a missing colon at the end of an <code>if</code> line?</q>
-    <div class="ans"><b>No.</b> That is a syntax error &mdash; Python cannot read the file at all, so nothing runs, including your <code>try</code>. <code>except</code> only catches things that go wrong <b>while</b> the program is running.</div></div></div>
-
-   <div class="aq" data-who="aug"><div>
-    <q>I wrote a function and nothing happened. Why? <span class="qwho">August only</span></q>
-    <div class="ans">Writing a function does <b>nothing</b>. It is a recipe on a shelf. It only runs when you <b>call it by name</b> with brackets.</div></div></div>
-
-   <div class="aq" data-who="aug"><div>
-    <q>My <code>while</code> loop never stops. What did I forget? <span class="qwho">August only</span></q>
-    <div class="ans">To change the thing the condition is testing. If <code>i</code> never increases, <code>while i &lt; 5</code> is true forever. <code>Ctrl</code>+<code>C</code> stops it.</div></div></div>
- </div>
-</div>
 </div>
 <div class="sqlonly">
 <div class="round" id="s1" data-all="28" data-aug="0">
@@ -1383,44 +1337,6 @@ while True:
     <div class="ans">Write the <code>SELECT</code> first with exactly the <code>WHERE</code> you plan to use, and look at what comes back. If that returns the one row you mean, change <code>SELECT *</code> to <code>DELETE</code> and leave the WHERE untouched.<br><br><b>What to listen for:</b> that they filter on the <b>primary key</b> and not the name &mdash; two people can share a name. And an awareness that <code>DELETE</code> with no WHERE empties the table.</div></div></div>
  </div>
 </div>
-
-<div class="round" id="s5" data-all="8" data-aug="0">
- <div class="rhead"><span class="mins">8 minutes</span><h3>Round 5 &mdash; the trap questions</h3><span class="cnt"></span></div>
- <p class="rlede">Short, and built to be got wrong. <b>When the room misses one, stop and teach it.</b></p>
- <div class="askq">
-   <div class="aq" data-who="both"><div>
-    <q><code>SELECT * FROM employees WHERE salary = NULL;</code> returns nothing. Is the table empty?</q>
-    <div class="ans"><b>No.</b> Nothing is ever equal to NULL, so the condition is never true. It needs <code>IS NULL</code>.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>I ran an UPDATE and 200 rows changed instead of 1. What did I forget?</q>
-    <div class="ans">The <code>WHERE</code>. With no WHERE, <code>UPDATE</code> applies to <b>every row in the table</b>, and it does not warn you.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q><code>LIMIT 5</code> without <code>ORDER BY</code> &mdash; do I get the top five?</q>
-    <div class="ans"><b>No.</b> You get five rows in whatever order the database felt like. Top five needs <code>ORDER BY salary DESC LIMIT 5</code>.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>Why does <code>WHERE COUNT(*) &gt; 10</code> fail?</q>
-    <div class="ans">Because <code>WHERE</code> runs <b>before</b> the rows are grouped, so there is nothing to count yet. That condition belongs in <code>HAVING</code>.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q><code>COUNT(*)</code> says 201 and <code>COUNT(salary)</code> says 199. What does that tell you?</q>
-    <div class="ans"><b>Two salaries are NULL.</b> <code>COUNT(*)</code> counts rows, <code>COUNT(column)</code> skips NULLs, and the gap is your missing data.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q>Three people tie for second place. Under <code>RANK</code>, what number does the next person get?</q>
-    <div class="ans"><b>5.</b> One first, then three on 2, and <code>RANK</code> skips 3 and 4. Under <code>DENSE_RANK</code> they would get 3.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q><code>TRUNCATE</code> and <code>DELETE</code> both emptied my table. Any difference?</q>
-    <div class="ans"><code>DELETE</code> can take a <code>WHERE</code> and removes rows one at a time. <code>TRUNCATE</code> takes no WHERE, empties the lot, and is much faster. Both leave the table standing.</div></div></div>
-
-   <div class="aq" data-who="both"><div>
-    <q><code>LIKE 'a%'</code> did not find <code>Asha</code>. Why might that be?</q>
-    <div class="ans">Case. Depending on how the column is set up, <code>'a%'</code> may not match a capital A. Match the case, or push both sides to the same case first.</div></div></div>
- </div>
-</div>
 </div>
  </div>
 </section>
@@ -1484,7 +1400,7 @@ while True:
    <li><b>Take the answer from one person and the reason from another.</b> It doubles the number of
    people thinking and it catches the ones who memorised the line without the idea.</li>
    <li><b>When the room gets one wrong, stop and teach it.</b> That is worth more than the next three
-   questions. Round 5 exists for exactly this.</li>
+   questions.</li>
    <li><b>Write down what they miss.</b> Whatever falls over today is what next week's NumPy sessions
    should open by repairing.</li>
   </ol>
@@ -1493,7 +1409,7 @@ while True:
 
 <script>
 (function(){
- var PY=118, AUGN=20, SQL=75;
+ var PY=108, AUGN=18, SQL=67;
  var subs =[].slice.call(document.querySelectorAll(".tabs button"));
  var btns =[].slice.call(document.querySelectorAll(".pickbtns button"));
  var shown=document.getElementById("shown"), hid=document.getElementById("hidnote");
