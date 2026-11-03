@@ -1,8 +1,26 @@
-# Python Mock Interview Questions
+# Data Analytics — Interview Question Bank
 
-A single self-contained page. Pick a batch at the top and the question list
-filters itself to what that batch has actually been taught.
+**Trainer reference copy.** 169 questions across 9 topics, each with a full answer underneath.
 
-Built from `netlify-mock/build/` in the curriculum working copy — edit
-`bank.py` for the questions, `build.py` for the layout, then re-run
-`python3 build.py` and push.
+**Live:** https://sharath-tap.github.io/python-mock-interview/
+
+| Topic | Questions |
+|---|---:|
+| SQL | 29 |
+| Pandas | 22 |
+| Python | 25 |
+| NumPy | 8 |
+| Statistics | 26 |
+| Probability | 8 |
+| Excel | 23 |
+| Charts & BI | 12 |
+| Scenario & Communication | 16 |
+
+Topic-segregated tabs, section jump links inside each. No batch filtering — ask whatever
+is appropriate for the candidate in front of you.
+
+Built from `DA Curriculum/netlify-mock/build/` — one `qb_*.py` module per topic, rendered by
+`build.py`. The build fails on unbalanced tags.
+
+> The answers are written for the trainer: ask the question, let the candidate answer, then
+> use the text to probe. Several carry an explicit trainer note rather than a model answer.
